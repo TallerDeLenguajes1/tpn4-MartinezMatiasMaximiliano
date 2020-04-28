@@ -55,29 +55,29 @@ void CargarTareas(Tarea *tarea,int cantTareas){
 
 void RealizarTareas(Tarea *Pendiente,Tarea *Realizado,int cantTareas){
     Tarea mostrarTarea;
-    char confirmar;
+    int confirmar;
     for(int i=0;i < cantTareas;i++){
         mostrarTarea = *Pendiente;    
         printf("\n\n=========Tarea [%d]=========\n\n",i+1);
         printf("ID:%d\n",mostrarTarea.TareaID);
         printf("Descripcion:%s\n",mostrarTarea.Descripcion);
         printf("Duracion:%d\n",mostrarTarea.Duracion);
+
+
+        do{
+            printf("Se realizo la tarea?[1/0]");
+            fflush(stdin);
+            scanf("%d",&confirmar);
+        }while(confirmar<0 || confirmar>1);
         
-        if(confirmar != 'Y' || confirmar != 'N' || confirmar != 'n' || confirmar != 'y'){
-        printf("Se realizo la tarea?[Y/N]");
-        fflush(stdin);
-        confirmar = getchar();
-        }
-        
-       /*
-        if(confirmar == 'Y'){
-            *Realizado = mostrarTarea;
-            Realizado++; 
-            Pendiente++;
+        if(confirmar == 1){
+            *Realizado = *Pendiente;
+            Pendiente[i] = NULL;
         }else{
-            Pendiente++;
+            (Realizado->TareaID)--;
         }
-        */
+       Pendiente++;
+       Realizado++;
     }
 }
 
@@ -106,3 +106,21 @@ void MostrarRealizadas(Tarea *Realizadas){
         Realizadas++; 
     }
 }
+
+
+
+/*
+        if(confirmar != 'Y' || confirmar != 'N' || confirmar != 'n' || confirmar != 'y'){
+        printf("Se realizo la tarea?[Y/N]");
+        fflush(stdin);
+        confirmar = getchar();
+        }
+        
+        if(confirmar == 'Y'){
+            *Realizado = mostrarTarea;
+            Realizado++; 
+            Pendiente++;
+        }else{
+            Pendiente++;
+        }
+        */
