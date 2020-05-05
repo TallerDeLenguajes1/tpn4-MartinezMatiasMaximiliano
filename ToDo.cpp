@@ -49,14 +49,11 @@ void RealizarTarea(Tarea **TareaLocal,Tarea **TareaRLocal,int cantTareas){
             printf("\n");
         }
 
-        if(confirm == 1){
+        if (confirm == 1) {
             TareaRLocal[i] = TareaLocal[i];
             TareaLocal[i] = NULL;
-        }
-
-        if (confirm == 0)
-        {
-            TareaRLocal[i] == NULL;
+        } else {
+            TareaRLocal[i] = NULL;
         }
         
     }
