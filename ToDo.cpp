@@ -17,7 +17,6 @@ void CargarTarea(Tarea **TareaLocal,int cantTareas){
         
         printf("Ingrese una descripcion para la tarea [%d]:",i+1);
         fflush(stdin);
-        char *Descripcion;
         char descrip[500];
         gets(descrip);
         nueva->Descripcion = (char*)malloc(sizeof(char)*strlen(descrip));
@@ -27,7 +26,7 @@ void CargarTarea(Tarea **TareaLocal,int cantTareas){
 
         *TareaLocal = nueva;
 
-        *TareaLocal++;
+        TareaLocal++;
     }
     
 }
@@ -39,7 +38,7 @@ void RealizarTarea(Tarea **TareaLocal,Tarea **TareaRLocal,int cantTareas){
         printf("Descripcion:%s\n",TareaLocal[i]->Descripcion);
         printf("Duracion:%d\n",TareaLocal[i]->Duracion);
         printf("\n");
-
+        fflush(stdin);
         printf("Se realizo la tarea?[1/0]");
         scanf("%d", &confirm);
         
@@ -49,16 +48,13 @@ void RealizarTarea(Tarea **TareaLocal,Tarea **TareaRLocal,int cantTareas){
             printf("\n");
         }
 
-        if(confirm == 1){
+        if (confirm == 1) {
             TareaRLocal[i] = TareaLocal[i];
             TareaLocal[i] = NULL;
+        } else {
+            TareaRLocal[i] = NULL;
         }
 
-        if (confirm == 0)
-        {
-            TareaRLocal[i] == NULL;
-        }
-        
     }
     
 }
@@ -76,10 +72,24 @@ void MostrarLista(Tarea **Lista,int cantTareas){
     
 }
 
+void BuscarPorID(Tarea **Pendientes,int cantTareas,int buscado){
+for (int i = 0; i < cantTareas; i++)
+    {
+        if(Pendientes[i] != NULL && Pendientes[i]->TareaID == buscado){
+        printf("TareaID:%d\n",Pendientes[i]->TareaID);
+        printf("Descripcion:%s\n",Pendientes[i]->Descripcion);
+        printf("Duracion:%d\n",Pendientes[i]->Duracion);
+        printf("\n");
+        break; 
+        }
+    }
+}
+
 
 
 int main(){
     int cantTareas = 3;
+    int BuscarID;
     /*
     printf("Ingrese la cantidad de tareas:");
     scanf("%d",&cantTareas);
@@ -96,7 +106,13 @@ int main(){
     MostrarLista(TareasPendientes,cantTareas);
     printf("\n\n=============LISTA DE TAREAS REALIZADAS=============\n\n");
     MostrarLista(TareasRealizadas,cantTareas);
-    
+
+
+    printf("\n\n=============BUSQUEDA POR ID=============\n\n");
+    printf("Ingrese el ID que quiere buscar:");
+    scanf("%d",&BuscarID);
+
+    BuscarPorID(TareasPendientes,cantTareas,BuscarID);
     
 
     return 0;
