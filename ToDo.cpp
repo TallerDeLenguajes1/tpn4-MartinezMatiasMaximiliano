@@ -76,14 +76,14 @@ void MostrarLista(Tarea **Lista,int cantTareas){
 
 
 int main(){
-    int cantTareas = 3;
-    /*
+    int cantTareas;
+    
     printf("Ingrese la cantidad de tareas:");
     scanf("%d",&cantTareas);
-    */
+    
 
-   Tarea **TareasPendientes = (Tarea**)malloc(sizeof(Tarea)*cantTareas);
-   Tarea **TareasRealizadas = (Tarea**)malloc(sizeof(Tarea)*cantTareas);
+   Tarea **TareasPendientes = (Tarea**)malloc(sizeof(Tarea*)*cantTareas);
+   Tarea **TareasRealizadas = (Tarea**)malloc(sizeof(Tarea*)*cantTareas);
 
     CargarTarea(TareasPendientes,cantTareas);
     printf("\n\n=============LISTA DE TAREAS=============\n\n");
