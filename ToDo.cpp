@@ -74,16 +74,46 @@ void MostrarLista(Tarea **Lista,int cantTareas){
 }
 
 
+Tarea BuscarPorDesc(Tarea **Pendientes,int cantTareas,char *buscado)
+{
+    int encontrado;
+    Tarea aux;
+    for (int i = 0; i < cantTareas; i++)
+    {
+        encontrado = strcmp(Pendientes[i]->Descripcion,buscado);
+        if (encontrado == 0) {
+            return *(Pendientes[i]);
+        }
+    }
+    return aux;
+}
+
+/*}
+tarea BusquedaPorPalabra(tarea **X, int Y, char cadena[MAX]) {
+    int ret;
+    tarea aux;
+    
+    for (int i = 0; i < Y; i++) {
+        ret = strcmp(X[i]->descripcion, cadena);
+        if (ret == 0) {
+            return *(X[i]);
+        }
+    }
+    return aux;
+}*/
+
 
 int main(){
-    int cantTareas;
-    
+    int cantTareas = 3;
+    char BuscarDesc[99];
+    /*
     printf("Ingrese la cantidad de tareas:");
     scanf("%d",&cantTareas);
-    
+    */
+   Tarea Encontrada;
 
-   Tarea **TareasPendientes = (Tarea**)malloc(sizeof(Tarea*)*cantTareas);
-   Tarea **TareasRealizadas = (Tarea**)malloc(sizeof(Tarea*)*cantTareas);
+   Tarea **TareasPendientes = (Tarea**)malloc(sizeof(Tarea)*cantTareas);
+   Tarea **TareasRealizadas = (Tarea**)malloc(sizeof(Tarea)*cantTareas);
 
     CargarTarea(TareasPendientes,cantTareas);
     printf("\n\n=============LISTA DE TAREAS=============\n\n");
@@ -93,7 +123,14 @@ int main(){
     MostrarLista(TareasPendientes,cantTareas);
     printf("\n\n=============LISTA DE TAREAS REALIZADAS=============\n\n");
     MostrarLista(TareasRealizadas,cantTareas);
-    
+
+
+    printf("\n\n=============BUSQUEDA POR ID=============\n\n");
+    printf("Ingrese el ID que quiere buscar en Pendientes:");
+    fflush(stdin);
+    gets(BuscarDesc);
+
+    Encontrada = BuscarPorDesc(TareasPendientes,cantTareas,BuscarDesc);
     
 
     return 0;
