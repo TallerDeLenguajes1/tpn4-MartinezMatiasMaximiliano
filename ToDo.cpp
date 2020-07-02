@@ -88,19 +88,7 @@ Tarea BuscarPorDesc(Tarea **Pendientes,int cantTareas,char *buscado)
     return aux;
 }
 
-/*}
-tarea BusquedaPorPalabra(tarea **X, int Y, char cadena[MAX]) {
-    int ret;
-    tarea aux;
-    
-    for (int i = 0; i < Y; i++) {
-        ret = strcmp(X[i]->descripcion, cadena);
-        if (ret == 0) {
-            return *(X[i]);
-        }
-    }
-    return aux;
-}*/
+
 
 
 int main(){
